@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Online Coaching — Nurture Merit, SATHI</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.fc-hero{min-height:55vh;position:relative;display:flex;align-items:flex-end;padding:0 3.5rem 3.5rem;margin-top:64px;background:var(--ink);overflow:hidden;}
+.fc-hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 40px,rgba(200,57,26,.05) 40px,rgba(200,57,26,.05) 41px);}
+.fc-hero-content{position:relative;z-index:1;max-width:820px;}
+.fc-hero h1{font-family:var(--display);font-size:clamp(2.5rem,5.5vw,5rem);color:white;text-transform:uppercase;line-height:.92;letter-spacing:-.02em;margin-bottom:1.25rem;}
+.fc-hero h1 span{color:var(--red);}
+.fc-hero p{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:rgba(255,255,255,.65);line-height:1.65;max-width:640px;margin-bottom:2rem;}
+.yt-btn{display:inline-flex;align-items:center;gap:.75rem;background:#FF0000;color:white;padding:.85rem 1.75rem;border-radius:3px;font-size:14px;font-weight:500;text-decoration:none;transition:all .15s;}
+.yt-btn:hover{background:#cc0000;transform:translateY(-1px);}
+.yt-icon{width:22px;height:22px;background:white;border-radius:4px;display:flex;align-items:center;justify-content:center;}
+.yt-icon::after{content:"";border-left:9px solid #FF0000;border-top:5.5px solid transparent;border-bottom:5.5px solid transparent;margin-left:2px;}
+.fc-stats{background:var(--ink);display:grid;grid-template-columns:repeat(4,1fr);}
+.fc-stat{padding:2.25rem 2rem;text-align:center;border-right:1px solid rgba(255,255,255,.07);}
+.fc-stat:last-child{border:none;}
+.fc-stat-num{font-family:var(--display);font-size:2.8rem;color:var(--red);line-height:1;display:block;letter-spacing:-.02em;}
+.fc-stat-label{font-size:11px;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:.07em;margin-top:.5rem;line-height:1.45;}
+.fc-body{max-width:1200px;margin:0 auto;padding:5rem 3.5rem;}
+.fc-section-tag{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:.75rem;}
+.fc-section-title{font-family:var(--display);font-size:clamp(1.8rem,3vw,2.8rem);text-transform:uppercase;letter-spacing:-.01em;line-height:.95;margin-bottom:2rem;}
+.fc-body-text{font-family:var(--serif);font-size:1.08rem;color:var(--ink-mid);line-height:1.82;margin-bottom:1.25rem;}
+.fc-two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);margin-bottom:5rem;}
+.fc-col-box{background:var(--cream);padding:2.5rem;}
+.fc-col-box.white{background:white;}
+.fc-col-title{font-family:var(--display);font-size:.9rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.5rem;color:var(--ink);}
+.fc-list{list-style:none;padding:0;margin:0;}
+.fc-list li{padding:.6rem 0;border-bottom:1px solid var(--border);font-family:var(--serif);font-size:1rem;color:var(--ink-mid);display:flex;gap:.75rem;align-items:baseline;line-height:1.55;}
+.fc-list li:last-child{border-bottom:none;}
+.fc-list li::before{content:"\2192";color:var(--red);font-size:11px;flex-shrink:0;font-family:var(--body);}
+/* apply band */
+.fc-apply{background:var(--red);padding:3.5rem;margin-bottom:5rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.fc-apply-title{font-family:var(--display);font-size:clamp(1.8rem,3vw,2.8rem);color:white;text-transform:uppercase;line-height:.95;letter-spacing:-.01em;margin-bottom:1rem;}
+.fc-apply-body{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:rgba(255,255,255,.78);line-height:1.65;margin-bottom:2rem;}
+.fc-downloads{display:flex;flex-direction:column;gap:1rem;}
+.fc-dl{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:1rem 1.25rem;text-decoration:none;color:white;transition:background .15s;}
+.fc-dl:hover{background:rgba(255,255,255,.2);}
+.fc-dl-icon{width:36px;height:36px;background:white;border-radius:3px;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:.55rem;color:var(--red);text-transform:uppercase;letter-spacing:.08em;flex-shrink:0;}
+.fc-dl-main{font-size:13.5px;font-weight:500;display:block;}
+.fc-dl-sub{font-size:11px;opacity:.6;margin-top:.1rem;display:block;}
+/* teachers grid */
+.fc-teachers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--border);margin-bottom:5rem;}
+.fc-teacher{background:white;padding:1.5rem 1.75rem;}
+.fc-teacher-name{font-family:var(--display);font-size:.8rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.35rem;}
+.fc-teacher-detail{font-family:var(--serif);font-style:italic;font-size:.92rem;color:var(--ink-mid);line-height:1.5;}
+.fc-teacher-subj{display:inline-block;margin-top:.5rem;font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;background:var(--ink);color:rgba(255,255,255,.6);padding:.2rem .55rem;}
+/* success story cards */
+.fc-stories{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--border);margin-bottom:5rem;}
+.fc-story{background:white;padding:2.5rem;}
+.fc-story-name{font-family:var(--display);font-size:1.2rem;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:.3rem;}
+.fc-story-loc{font-size:11px;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.5rem;}
+.fc-story-stat{display:inline-block;background:var(--red);color:white;font-family:var(--display);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .75rem;margin-bottom:1.25rem;}
+.fc-story-body{font-family:var(--serif);font-size:1rem;color:var(--ink-mid);line-height:1.78;}
+.fc-story-body strong{color:var(--ink);font-style:normal;font-weight:500;}
+@media(max-width:900px){
+  .fc-hero{padding:0 1.5rem 2.5rem;}
+  .fc-stats{grid-template-columns:repeat(2,1fr);}
+  .fc-body{padding:3rem 1.5rem;}
+  .fc-two-col,.fc-apply,.fc-stories{grid-template-columns:1fr;}
+  .fc-teachers-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo"><img src="data:image/png;base64,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" alt="SATHI" style="height:36px;width:auto;display:block;"></a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="#" class="nav-has-dropdown">Our Work <span class="nav-arrow">&#9660;</span></a>
+      <div class="dropdown-menu">
+        <a href="railway.html"><span class="dd-num">01</span><span class="dd-text">Children in Contact with Railways</span></a>
+        <a href="migrant.html"><span class="dd-num">02</span><span class="dd-text">Migrant Communities</span></a>
+        <a href="slum.html"><span class="dd-num">03</span><span class="dd-text">Street Children</span></a>
+        <a href="nurture.html"><span class="dd-num">04</span><span class="dd-text">Nurture Merit</span></a>
+        <a href="free-classes.html" style="border-top:1px solid var(--border);background:rgba(200,57,26,0.04);"><span class="dd-num" style="color:var(--red);">&#9654;</span><span class="dd-text">Free Online Coaching</span></a>
+      </div>
+    </li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="stories.html">Stories</a></li>
+    <li><a href="people.html">People of SATHI</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://sathiindia.org/donate-now.html" target="_blank" class="nav-donate">Donate</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()">&#9776;</button>
+</nav>
+<div class="breadcrumb">
+  <a href="index.html">Home</a><span class="breadcrumb-sep">&#8250;</span>
+  <a href="nurture.html">Nurture Merit</a><span class="breadcrumb-sep">&#8250;</span>
+  <span>Free Online Coaching</span>
+</div>
+
+<section class="fc-hero">
+  <div class="fc-hero-content">
+    <h1>Free Online<br><span>Coaching</span></h1>
+    <p>Coaching bright minds from rural government school backgrounds to bring them on par with others. Completely free. Led by volunteer teachers from IIMs, IITs, and top institutions across India.</p>
+    <a href="https://youtu.be/YoQrkUFDPjE" target="_blank" class="yt-btn">
+      <span class="yt-icon"></span>Watch our programme story on YouTube
+    </a>
+  </div>
+</section>
+
+<div class="fc-stats">
+  <div class="fc-stat"><span class="fc-stat-num">200+</span><div class="fc-stat-label">Students supported<br>over 5 years</div></div>
+  <div class="fc-stat"><span class="fc-stat-num">10</span><div class="fc-stat-label">States with<br>active coaching</div></div>
+  <div class="fc-stat"><span class="fc-stat-num">&#8377;0</span><div class="fc-stat-label">Cost to<br>students</div></div>
+  <div class="fc-stat"><span class="fc-stat-num">100%</span><div class="fc-stat-label">Volunteer-led<br>teaching</div></div>
+</div>
+
+<div class="fc-body">
+
+  <!-- ABOUT -->
+  <div style="margin-bottom:4rem;max-width:860px;">
+    <span class="fc-section-tag">About the Programme</span>
+    <h2 class="fc-section-title">Coaching bright minds<br>from rural backgrounds</h2>
+    <p class="fc-body-text">Students coming from disadvantaged backgrounds continue to have limited representation in national-level competitive examinations such as CUET, CLAT, NDA, JEE, and NEET. Such exams are important pathways to quality higher education, scholarships, and long-term career opportunities. However, many capable students lack the awareness, guidance, and academic support needed to prepare effectively for these opportunities.</p>
+    <p class="fc-body-text">The challenges often begin in high school, where students may not receive sufficient exposure to conceptual learning, analytical thinking, and problem-solving skills. To address this gap, we provide academically bright high school students with training in Mathematics and Science, with a focus on conceptual understanding, along with guidance and mentorship. Over the past five years, the programme has supported more than 200 students, many of whom are now studying in prestigious institutions, secured scholarships, and are looking forward to rewarding careers.</p>
+  </div>
+
+  <!-- PROGRAMME DETAILS + ELIGIBILITY -->
+  <div class="fc-two-col">
+    <div class="fc-col-box">
+      <div class="fc-col-title">Programme Details</div>
+      <ul class="fc-list">
+        <li>The programme is free of cost to students and their families</li>
+        <li>Classes are conducted for students in 9th and 10th standards</li>
+        <li>Classes are conducted online so that students in small towns and villages can benefit</li>
+        <li>Classes are conducted in the evening after regular school hours</li>
+        <li>We follow NCERT syllabus to prepare for national-level competition</li>
+        <li>Professionals from different fields teach students to build strong conceptual understanding in Science and Maths</li>
+        <li>Activities are conducted to make students aware of opportunities and preparation for higher education, scholarships, and entrance exams</li>
+      </ul>
+    </div>
+    <div class="fc-col-box white">
+      <div class="fc-col-title">Eligibility Criteria</div>
+      <ul class="fc-list">
+        <li>You must have written the NMMS exam and scored 100 or more marks in total</li>
+        <li>Have at least 2 hours every day to dedicate to our classes</li>
+        <li>You can comfortably solve questions from textbooks and want to attempt more difficult questions</li>
+        <li>You want to develop a deeper understanding of concepts and build a strong base in Science and Maths</li>
+        <li>You want to attempt competitive exams such as scholarships, talent search, and entrance to colleges</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- APPLY + DOWNLOADS -->
+  <div class="fc-apply">
+    <div>
+      <div class="fc-apply-title">How to Apply</div>
+      <p class="fc-apply-body">For NMMS Class 8 coaching: attempt the sample question paper. If you answer at least 15 questions correctly, send your application on WhatsApp to <strong>86603 32586</strong>. For Class 9 NTSE coaching: download the application form and send to <strong>pramodkulkarni4@gmail.com</strong></p>
+    </div>
+    <div class="fc-downloads">
+      <a href="https://sathiindia.org/images/pdf's/English-Sample-Question-Paper-for-Pre-NMMS-coaching.pdf" target="_blank" class="fc-dl">
+        <div class="fc-dl-icon">PDF</div>
+        <div><span class="fc-dl-main">Sample Question Paper (English)</span><span class="fc-dl-sub">Pre-NMMS Coaching selection test</span></div>
+      </a>
+      <a href="https://sathiindia.org/images/pdf's/Kannada-Sample-Question-Paper-for-Pre-NMMS-coaching.pdf" target="_blank" class="fc-dl">
+        <div class="fc-dl-icon">PDF</div>
+        <div><span class="fc-dl-main">Sample Question Paper (Kannada)</span><span class="fc-dl-sub">Pre-NMMS Coaching selection test</span></div>
+      </a>
+      <a href="https://sathiindia.org/images/pdf's/Pre-NMMS-Application-Form-for-current-7th-std.pdf" target="_blank" class="fc-dl">
+        <div class="fc-dl-icon">PDF</div>
+        <div><span class="fc-dl-main">Application Form (Class 8 / NMMS)</span><span class="fc-dl-sub">For students currently in Class 7</span></div>
+      </a>
+      <a href="https://sathiindia.org/images/pdf's/Post-NMMS-Application-Form-for-9th-std.pdf" target="_blank" class="fc-dl">
+        <div class="fc-dl-icon">PDF</div>
+        <div><span class="fc-dl-main">Application Form (Class 9 / NTSE)</span><span class="fc-dl-sub">For NMMS toppers entering Class 9</span></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- SUCCESS STORIES -->
+  <div style="margin-bottom:3rem;">
+    <span class="fc-section-tag">Success Stories</span>
+    <h2 class="fc-section-title">Where our students<br>are today</h2>
+  </div>
+  <div class="fc-stories">
+    <div class="fc-story">
+      <div class="fc-story-name">Ningamma</div>
+      <div class="fc-story-loc">Chikkabidarakallu Govt. School, Bangalore, Karnataka</div>
+      <div class="fc-story-stat">Cohort 2020 &middot; First Student</div>
+      <p class="fc-story-body">Ningamma's parents are farmers from North Karnataka who migrated to Bangalore. Her father drives a goods van and her mother works in a garments factory. Ningamma took our classes seriously and went on to score <strong>619 out of 625 (99.33%) in her Class 10 board exam</strong>, securing 6th rank in Karnataka. She won free admission at Deeksha Integrated PU College. In March 2024, she secured <strong>97% in her PU exam</strong>, appeared for JEE Mains, and <strong>secured admission at NITK, Surathkal</strong>, where she is now pursuing B.Tech. in Electronics and Communication.</p>
+    </div>
+    <div class="fc-story">
+      <div class="fc-story-name">Mahadev</div>
+      <div class="fc-story-loc">Mudagunda Village, Chamarajanagar, Karnataka</div>
+      <div class="fc-story-stat">IIT Kharagpur</div>
+      <p class="fc-story-body">Mahadev's father works in a ceramics factory earning around &#8377;7,000 per month. He studied at Adarsha Vidyalaya in Kollegal and scored <strong>98% in Class 10</strong>. He won 1st prize at state-level quiz competitions, passed all 3 stages of the Rashtrotthana Parishat exam, and was selected for their Tapas programme. He received JEE coaching there and <strong>cleared JEE with a good ranking. He is now studying BSc in Physics at IIT Kharagpur</strong> and aspires to become an academic professor.</p>
+    </div>
+    <div class="fc-story">
+      <div class="fc-story-name">Chandrika</div>
+      <div class="fc-story-loc">Jagadal Village, Bagalkot, Karnataka</div>
+      <div class="fc-story-stat">BMSIT Bangalore &middot; Two Scholarships</div>
+      <p class="fc-story-body">Chandrika is from a farming family of 4 children and studied in Kannada medium through Class 10, scoring <strong>98.7%</strong>. She received free admission at Avanti Fellows, Hubli (typically costing &#8377;1 lakh per year) for 11th and 12th. Despite the challenge of adjusting to English medium, the in-depth training from our programme helped her succeed. <strong>Chandrika secured admission at BMSIT Bangalore in Computer Science and Engineering and also secured two scholarships</strong>, pursuing her education without financial burden on her parents.</p>
+    </div>
+    <div class="fc-story">
+      <div class="fc-story-name">Monisha</div>
+      <div class="fc-story-loc">Bannur, T. Narasipura, Mysore, Karnataka</div>
+      <div class="fc-story-stat">MBBS &middot; Hassan Institute of Medical Sciences</div>
+      <p class="fc-story-body">Monisha travelled 13 km each way to school by bus but took academics very seriously, scoring <strong>98% in her Class 10 boards</strong>. She passed the SAADHANA exam by Rashtrotthana Parishat and received free admission (including hostel) at SAADHANA, Bengaluru, for NEET coaching. <strong>Monisha secured a NEET rank of 18,000 (97th percentile) and is currently pursuing MBBS at Hassan Institute of Medical Sciences</strong>, a government medical college.</p>
+    </div>
+    <div class="fc-story">
+      <div class="fc-story-name">Jyothi</div>
+      <div class="fc-story-loc">Koila Taluk, Dakshina Kannada, Karnataka</div>
+      <div class="fc-story-stat">SADHANA Programme &middot; NEET Aspirant</div>
+      <p class="fc-story-body">Jyothi's family moved from Gulbarga to Dakshina Kannada in search of work. Both parents are labourers. She joined our online classes in 2023-24 and, though she initially faced difficulty with technical English from a Kannada-medium background, grew to participate confidently in class discussions. She <strong>passed all 3 stages of the Rashtrotthana Parishat exam</strong> and secured a place in the SADHANA programme, which offers free education and hostel for 11th and 12th. Jyothi is now in 11th standard with her eyes set on cracking NEET to become a doctor.</p>
+    </div>
+  </div>
+
+  <!-- TEACHERS -->
+  <div style="margin-bottom:2rem;">
+    <span class="fc-section-tag">Our Volunteer Teachers</span>
+    <h2 class="fc-section-title">Teachers from IIMs, IITs,<br>and top institutions</h2>
+    <p class="fc-body-text" style="max-width:720px;margin-bottom:2.5rem;">Our teachers come from prestigious institutions and fields. Many are retired professionals with a strong sense of social responsibility. They are passionate about helping talented students from government schools in small towns, where access to quality teaching is often limited.</p>
+  </div>
+  <div class="fc-teachers-grid">
+    <div class="fc-teacher"><div class="fc-teacher-name">Mr. Ulhas Vairagkar</div><div class="fc-teacher-detail">MBA, IIM Ahmedabad. New Delhi</div><span class="fc-teacher-subj">Chemistry &amp; Biology</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Dr. Vineet Raichur</div><div class="fc-teacher-detail">PhD, University of Michigan, USA. Bangalore</div><span class="fc-teacher-subj">Physics</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Mr. Ramesh Kaujalgi</div><div class="fc-teacher-detail">Director (Retd.), Mahindra &amp; Mahindra. Bangalore</div><span class="fc-teacher-subj">Physics</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Dr. Pancharatna</div><div class="fc-teacher-detail">PhD in Zoology. Bangalore</div><span class="fc-teacher-subj">Biology</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Mr. Mahesh</div><div class="fc-teacher-detail">Software Professional. Bangalore</div><span class="fc-teacher-subj">Mathematics</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Ms. Pratibha Sobarad</div><div class="fc-teacher-detail">MBBS III year, Mangalore</div><span class="fc-teacher-subj">Biology</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Dr. Seema</div><div class="fc-teacher-detail">M.Tech &amp; PhD in Electronics. Bangalore</div><span class="fc-teacher-subj">Chemistry</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Mrs. Bharati</div><div class="fc-teacher-detail">M.Tech in Electronics. Bangalore</div><span class="fc-teacher-subj">Mathematics</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Mrs. Shobha Toshniwal</div><div class="fc-teacher-detail">Teacher. Ahmedabad</div><span class="fc-teacher-subj">Physics</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Dr. Rajagopalan</div><div class="fc-teacher-detail">FPM, IIM Ahmedabad. Bangalore</div><span class="fc-teacher-subj">Mathematics</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Mrs. Rashmi Kulkarni</div><div class="fc-teacher-detail">PG Diploma, Food Processing, Dharwad University. Mumbai</div><span class="fc-teacher-subj">Biology</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Mr. Sachin Panishetti</div><div class="fc-teacher-detail">B.Tech NIT Karnataka, Project Manager at MNC. Bangalore</div><span class="fc-teacher-subj">Mathematics</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Mr. Srinivas</div><div class="fc-teacher-detail">B.E., Application Manager, Panasonic. Bangalore</div><span class="fc-teacher-subj">Physics &amp; Biology</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Mr. Jeyakumar</div><div class="fc-teacher-detail">Engineering Graduate, Coimbatore; Retd. IDBI Bank. Mumbai</div><span class="fc-teacher-subj">Mathematics</span></div>
+    <div class="fc-teacher"><div class="fc-teacher-name">Ms. Pratiksha Rajadhyaksha</div><div class="fc-teacher-detail">MSc, BEd Post Graduate. Mumbai</div><span class="fc-teacher-subj">Chemistry</span></div>
+  </div>
+
+</div>
+
+<div class="inner-cta" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:2rem;">
+  <h2>Want to volunteer<br>as a teacher?</h2>
+  <div style="display:flex;flex-direction:column;gap:.75rem;align-items:flex-start;">
+    <a href="mailto:pramodkulkarni4@gmail.com" class="btn-white-sm">Email: pramodkulkarni4@gmail.com</a>
+    <a href="https://youtu.be/YoQrkUFDPjE" target="_blank" class="btn-white-sm" style="background:rgba(255,255,255,.15);color:white;border:1.5px solid rgba(255,255,255,.3);">Watch Programme Story on YouTube &rarr;</a>
+  </div>
+</div>
+<footer>
+  <div class="footer-brand"><span class="footer-brand-name">SATHI</span>
+    <p class="footer-brand-desc">Society for Assistance to Children in Difficult Situations. Founded by Pramod Kulkarni in 1992.</p>
+  </div>
+  <div class="footer-col"><span class="footer-col-title">Our Work</span><ul>
+    <li><a href="railway.html">Children in Contact with Railways</a></li>
+    <li><a href="migrant.html">Migrant Communities</a></li>
+    <li><a href="slum.html">Street Children</a></li>
+    <li><a href="nurture.html">Nurture Merit</a></li>
+  </ul></div>
+  <div class="footer-col"><span class="footer-col-title">Organisation</span><ul>
+    <li><a href="about.html">About SATHI</a></li>
+    <li><a href="about.html#founder">Our Founder</a></li>
+    <li><a href="people.html">People of SATHI</a></li>
+    <li><a href="stories.html">Stories of Change</a></li>
+    <li><a href="free-classes.html">Free Online Coaching</a></li>
+  </ul></div>
+  <div class="footer-col"><span class="footer-col-title">Get In Touch</span><ul>
+    <li><a href="mailto:sathi.admin@gmail.com">sathi.admin@gmail.com</a></li>
+    <li><a href="tel:+919448388257">+91 94483 88257</a></li>
+    <li><a href="https://sathiindia.org/donate-now.html" target="_blank">Donate Now</a></li>
+  </ul></div>
+  <div class="footer-bottom">
+    <p>&#169; 2025 SATHI India &middot; Registered Non-Profit &middot; FCRA Certified</p>
+    <p>Pune &middot; Bangalore &middot; Delhi &middot; Mumbai</p>
+  </div>
+</footer><script src="shared.js"></script>
+</body></html>

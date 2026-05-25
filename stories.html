@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stories of Change — SATHI</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,300;0,400;0,500;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.stories-hero {
+  min-height: 50vh; position: relative;
+  display: flex; align-items: flex-end;
+  padding: 0 3.5rem 3.5rem; margin-top: 64px;
+  background: var(--ink);
+}
+.stories-hero h1 {
+  font-family: var(--display); font-size: clamp(3rem, 6vw, 5.5rem);
+  color: white; text-transform: uppercase; line-height: 0.92;
+  letter-spacing: -0.02em; margin-bottom: 1.25rem; position: relative; z-index: 1;
+}
+.stories-hero h1 span { color: var(--red); }
+.stories-hero p {
+  font-family: var(--serif); font-style: italic;
+  font-size: 1.1rem; color: rgba(255,255,255,0.55); line-height: 1.6;
+  max-width: 500px; position: relative; z-index: 1;
+}
+.filter-bar {
+  background: var(--cream); padding: 1.25rem 3.5rem;
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 64px; z-index: 100;
+}
+.filter-btn {
+  padding: 0.45rem 1.1rem; border-radius: 100px;
+  font-size: 12px; font-weight: 500; letter-spacing: 0.04em;
+  border: 1.5px solid var(--border); background: transparent;
+  color: var(--ink-mid); cursor: pointer; transition: all 0.15s; font-family: var(--body);
+}
+.filter-btn:hover { border-color: var(--red); color: var(--red); }
+.filter-btn.active { background: var(--red); border-color: var(--red); color: white; }
+
+.stories-body { max-width: 1200px; margin: 0 auto; padding: 4rem 3.5rem; }
+
+.story-full {
+  display: grid; grid-template-columns: 340px 1fr; gap: 4rem;
+  padding: 4rem 0; border-top: 1px solid var(--border); align-items: start;
+}
+.story-full:last-child { border-bottom: 1px solid var(--border); }
+.story-full-img {
+  width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block;
+  background: var(--cream);
+}
+.story-full-img-placeholder {
+  width: 100%; aspect-ratio: 4/5; background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: 3rem; color: var(--red); opacity: 0.2;
+}
+.story-full-tag {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 1.25rem; display: block;
+}
+.story-full-name {
+  font-family: var(--display); font-size: clamp(1.8rem, 3vw, 2.8rem);
+  text-transform: uppercase; line-height: 0.92; letter-spacing: -0.01em; margin-bottom: 0.4rem;
+}
+.story-full-sub {
+  font-size: 11.5px; color: var(--ink-muted); text-transform: uppercase;
+  letter-spacing: 0.1em; margin-bottom: 2rem;
+}
+.story-full-pullquote {
+  font-family: var(--serif); font-size: 1.25rem; font-style: italic;
+  color: var(--ink); line-height: 1.55;
+  border-left: 3px solid var(--red); padding-left: 1.5rem; margin-bottom: 2rem;
+}
+.story-full-body {
+  font-family: var(--serif); font-size: 1.05rem; color: var(--ink-mid);
+  line-height: 1.8; margin-bottom: 1.1rem;
+}
+.story-full-update {
+  background: var(--cream); border-left: 3px solid var(--ink-muted);
+  padding: 1.25rem 1.5rem; margin: 1.75rem 0;
+}
+.story-full-update-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-muted); margin-bottom: 0.5rem; display: block;
+}
+.story-full-update p {
+  font-family: var(--serif); font-size: 1rem; color: var(--ink-mid);
+  line-height: 1.7; font-style: italic;
+}
+.story-full-prog {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 11.5px; color: var(--ink-muted); margin-top: 1rem;
+  text-decoration: none; transition: color 0.15s;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.story-full-prog:hover { color: var(--red); }
+
+@media (max-width: 900px) {
+  .stories-hero, .filter-bar, .stories-body { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .story-full { grid-template-columns: 1fr; gap: 1.75rem; padding: 2.5rem 0; }
+  .story-full-img, .story-full-img-placeholder { aspect-ratio: 16/9; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="data:image/png;base64,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" alt="SATHI" style="height:36px;width:auto;display:block;"></a>
+  <ul class="nav-links">
+    <li class="nav-dropdown">
+      <a href="#" class="nav-has-dropdown">Our Work <span class="nav-arrow">▾</span></a>
+      <div class="dropdown-menu">
+        <a href="railway.html"><span class="dd-num">01</span><span class="dd-text">Children in Contact with Railways</span></a>
+        <a href="migrant.html"><span class="dd-num">02</span><span class="dd-text">Migrant Communities</span></a>
+        <a href="slum.html"><span class="dd-num">03</span><span class="dd-text">Street Children</span></a>
+        <a href="nurture.html"><span class="dd-num">04</span><span class="dd-text">Nurture Merit — Education</span></a>
+      </div>
+    </li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="stories.html">Stories</a></li>
+    <li><a href="people.html">People of SATHI</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://sathiindia.org/donate-now.html" target="_blank" class="nav-donate">Donate</a></li>
+  </ul>
+  <button class="nav-hamburger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span class="breadcrumb-sep">›</span>
+  <span>Stories of Change</span>
+</div>
+
+<section class="stories-hero">
+  <div>
+    <h1>Stories of <span>Change</span></h1>
+    <p>Every number in our impact data is a child with a name, a family, and a future. These are some of them — told as they happened.</p>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterStories('all', this)">All Stories</button>
+  <button class="filter-btn" onclick="filterStories('railway', this)">Railway Programme</button>
+  <button class="filter-btn" onclick="filterStories('followup', this)">Follow-Up Visits</button>
+</div>
+
+<div class="stories-body">
+
+  <!-- ALOK -->
+  <div class="story-full" data-prog="railway followup">
+    <div class="story-full-img-placeholder">A</div>
+    <div>
+      <span class="story-full-tag">Working With Children in Contact with Railways</span>
+      <div class="story-full-name">Alok Kannojia</div>
+      <div class="story-full-sub">12 years old · Rescued March 2023 · Bhekrai Nagar, Pune</div>
+      <blockquote class="story-full-pullquote">"SATHI planted the seed of progress. We just nurtured it." — Alok's mother</blockquote>
+      <p class="story-full-body">On 30th March 2023, 12-year-old Alok and his 13-year-old friend Atharv were spotted at Pune Railway Station, heading to Delhi — alone, with no adult, and no plan. SATHI's outreach team brought them in.</p>
+      <p class="story-full-body">At the shelter, Alok was frightened and lashing out — verbally abusing staff, fighting with other children. The team gave him space. The next day, in counselling, the story came out. Atharv had secretly spent ₹40,000 from his mother's account and, fearing discovery, had convinced Alok to run away with him. Alok — loyal to his friend, influenced by his circle — had gone along without thinking through what he was doing.</p>
+      <p class="story-full-body">Counselling helped Alok understand the risks he had taken and the worry he had caused his family. His mother was found via a phone number he eventually shared — she had already filed an FIR. When she arrived at the shelter, she was simply relieved her son was safe. SATHI counselled her too, asking her to stay more connected to Alok's world despite her busy work schedule.</p>
+      <p class="story-full-body">The Child Welfare Committee twice declined to send Alok home, feeling he needed more time to address his anger. He stayed at the shelter for 17 days. In that time, something shifted. He joined activities, connected with staff, and began to understand what he stood to lose.</p>
+      <div class="story-full-update">
+        <span class="story-full-update-label">Follow-Up Visit — May 2024</span>
+        <p>A year later, SATHI visited Alok at his new home — his family had moved to distance him from old influences. Alok had just completed Class 7. His mother had quit her job to focus on her children. She visits their school regularly, tracks their progress, and maintains open conversations at home. Alok helps his father at the laundry after studying, never leaves without telling his parents where he's going, and has started talking about passing Class 10. "He's become responsible," his mother said. "SATHI planted the seed. We just nurtured it."</p>
+      </div>
+      <a href="railway.html" class="story-full-prog">→ Railway Programme</a>
+    </div>
+  </div>
+
+  <!-- ARYAN -->
+  <div class="story-full" data-prog="railway followup">
+    <div class="story-full-img-placeholder">A</div>
+    <div>
+      <span class="story-full-tag">Working With Children in Contact with Railways</span>
+      <div class="story-full-name">Aryan Gavli</div>
+      <div class="story-full-sub">15 years old at rescue · Now a JCB Driver with Pune Municipal Corporation</div>
+      <blockquote class="story-full-pullquote">"If SATHI hadn't saved me, my life might have been very different. I didn't see that as a better future."</blockquote>
+      <p class="story-full-body">Aryan was 15 when SATHI found him at Pune station on 31st January 2019 — alone, scared, and heading to his maternal uncle's home without knowing the way. He had run away after his father scolded him for bunking school. In a family of labourers, education felt like pressure, not possibility.</p>
+      <p class="story-full-body">At the shelter, Aryan opened up slowly. He feared going home — feared what his father would say. SATHI gave him time. Three days passed before he voluntarily handed over his father's number. When his father arrived, he was flooded with relief — and SATHI used that moment honestly. They told him his expectations were fair, but his approach needed to change. Shouting was not the same as guiding. His father listened. He agreed.</p>
+      <p class="story-full-body">Aryan went home on 5th February 2019, and something was different. His father didn't shout. He asked questions instead. Aryan completed Class 10 and, knowing academics wasn't his path, made a decision of his own: he would learn to drive a JCB, like his brother-in-law. He apprenticed for two years, earned his licence, and secured a permanent position with the Pune Municipal Corporation.</p>
+      <div class="story-full-update">
+        <span class="story-full-update-label">Follow-Up Visit — May 2024, Five Years Later</span>
+        <p>SATHI met Aryan at his workplace. He earns ₹25,000 a month. He lives with his parents, contributes to the household, and commutes daily from his village to Pune on his two-wheeler. He has no addictions, is not influenced by those who do, and is visibly content. He asked if he could visit the shelter soon — to speak to the boys there, to tell them that success looks different for everyone, and that finding your own path is not failure. "If I can motivate even one child," he said, "that's enough."</p>
+      </div>
+      <a href="railway.html" class="story-full-prog">→ Railway Programme</a>
+    </div>
+  </div>
+
+  <!-- BALRAM & JAIRAM -->
+  <div class="story-full" data-prog="railway followup">
+    <div class="story-full-img-placeholder">B</div>
+    <div>
+      <span class="story-full-tag">Working With Children in Contact with Railways</span>
+      <div class="story-full-name">Balram & Jairam Singh</div>
+      <div class="story-full-sub">16 & 13 years old · Rescued November 2018 · Bhosari, Pune</div>
+      <blockquote class="story-full-pullquote">"Balram is studying Mechanical Engineering. Jairam wants to follow his brother. Their chacha never gave up on them."</blockquote>
+      <p class="story-full-body">Two brothers, both orphaned by their father's death, living with their chacha in Pune. On 14th November 2018, after being scolded for not studying, Balram (16) and Jairam (13) decided they'd had enough. They were going back to their mother in Bihar. They got as far as the railway station before another NGO found them and brought them to SATHI.</p>
+      <p class="story-full-body">At the shelter, both boys were firm: they wouldn't go back. But SATHI's counsellors asked them one question that cut through the anger — if you go to your village, will you get the same quality of education? The silence that followed was answer enough. Gradually, the counsellors helped the boys see something they had missed: their uncle's scolding came from a place of investment, not cruelty. He saw potential in them. He was afraid of wasting it.</p>
+      <p class="story-full-body">When the chacha arrived, it was clear the boys were scared of him. SATHI spoke to him directly — he needed to explain things, not shout them. He heard it. He acknowledged his mistake. The boys went home on 19th November 2018.</p>
+      <div class="story-full-update">
+        <span class="story-full-update-label">Follow-Up Visit — May 2024, Six Years Later</span>
+        <p>Balram, now 21, is studying Mechanical Engineering at Nutan Maratha Engineering College. He lives in the hostel and visits when he can. Jairam, now 18, has completed Class 12 and wants to follow his brother into engineering. Their chacha — the man they once ran from — funded it all, giving his nephews the same opportunities as his own children. "Since 2018, nothing like that has happened again," he said. "They talk to me now. They tell me things."</p>
+      </div>
+      <a href="railway.html" class="story-full-prog">→ Railway Programme</a>
+    </div>
+  </div>
+
+  <!-- DEEPAK -->
+  <div class="story-full" data-prog="railway followup">
+    <div class="story-full-img-placeholder">D</div>
+    <div>
+      <span class="story-full-tag">Working With Children in Contact with Railways</span>
+      <div class="story-full-name">Deepak Londe</div>
+      <div class="story-full-sub">14 years old at rescue · Now earning ₹15,000/month at an auto parts company</div>
+      <blockquote class="story-full-pullquote">"One day at SATHI brought about a profound change. Today, he is responsible." — Deepak's parents</blockquote>
+      <p class="story-full-body">Deepak had run away before. Twice, actually. Running was the way he handled things — when he was bullied at his residential school, when things went wrong at home. On 10th March 2019, after being beaten by older boys who resented him for reporting their bullying to a teacher, 14-year-old Deepak walked out of school and spent two days on the streets of Pune before SATHI found him.</p>
+      <p class="story-full-body">The counsellor didn't lecture him about running. Instead, she told him something he hadn't thought about: running was the easy way out. Fighting through adversity was what prepared you for life. Deepak heard it. He gave his parents' number. He promised, on his own terms, not to make impulsive decisions again.</p>
+      <p class="story-full-body">His parents arrived the next day. SATHI spoke to them about the bullying — about the importance of staying connected to their children's lives, of having conversations rather than just checking in. Deepak went home that same day.</p>
+      <div class="story-full-update">
+        <span class="story-full-update-label">Follow-Up Visit — May 2024, Five Years Later</span>
+        <p>Deepak, now 19, failed his Class 10 board exams on the first attempt, appeared again, and passed. He completed a one-year ITI course and immediately found a job at Seinumero, an automotive parts manufacturer. He earns ₹15,000 a month, is financially independent, and contributes to the family's shared dream of owning a home. When SATHI asked him about running away, he laughed. "If SATHI hadn't rescued me," he said, "my life might have turned out very differently." His parents put it simply: one day at SATHI changed everything.</p>
+      </div>
+      <a href="railway.html" class="story-full-prog">→ Railway Programme</a>
+    </div>
+  </div>
+
+  <!-- MAHESH -->
+  <div class="story-full" data-prog="railway followup">
+    <div class="story-full-img-placeholder">M</div>
+    <div>
+      <span class="story-full-tag">Working With Children in Contact with Railways</span>
+      <div class="story-full-name">Mahesh</div>
+      <div class="story-full-sub">16 years old at rescue · Now driving commercially, dreaming of a transport business</div>
+      <blockquote class="story-full-pullquote">"Academics was never my passion. But I always loved driving. Now I do it for a living."</blockquote>
+      <p class="story-full-body">Mahesh wasn't in trouble. He wasn't running from anything. On 3rd January 2019, the 16-year-old from Alandi simply decided — on a quiet morning after his parents left for work — that he would go to Pune station with a friend and find a job. He didn't find one. SATHI found him instead.</p>
+      <p class="story-full-body">At the shelter, Mahesh was honest. He wasn't interested in studying. His family was economically struggling. His father was a watchman, his mother a labourer, and Mahesh felt he should be contributing rather than sitting in a classroom learning things that didn't connect to his life. He was told, gently but clearly: finish Class 10. After that, find what you love.</p>
+      <p class="story-full-body">He stayed four days at the shelter, participated well, and went home with his parents on 7th January 2019. He attempted his Class 10 exams. He didn't pass. But he didn't sit still either.</p>
+      <div class="story-full-update">
+        <span class="story-full-update-label">Follow-Up Visit — May 2024</span>
+        <p>Mahesh enrolled in driving school. He secured a job driving a commercial vehicle for IAI, an automobile company, earning ₹15,000 a month. A significant portion goes to his family. His dream: to own several vehicles and build a transport business of his own. "I always knew I loved driving," he said. "I just needed someone to tell me that was okay." His parents, who once watched him wander aimlessly, now watch him leave early every morning with purpose.</p>
+      </div>
+      <a href="railway.html" class="story-full-prog">→ Railway Programme</a>
+    </div>
+  </div>
+
+</div><!-- end stories-body -->
+
+<div class="inner-cta">
+  <h2>Behind every story<br>is a team that showed up.</h2>
+  <a href="https://sathiindia.org/donate-now.html" target="_blank" class="btn-white-sm">Support Our Work →</a>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <span class="footer-brand-name">SATHI</span>
+    <p class="footer-brand-desc">"Society for Assistance to Children in Difficult Situations. Protecting India's most vulnerable children since 1992."</p>
+  </div>
+  <div class="footer-col">
+    <span class="footer-col-title">Our Work</span>
+    <ul>
+      <li><a href="railway.html">Children in Contact with Railways</a></li>
+      <li><a href="migrant.html">Migrant Communities</a></li>
+      <li><a href="slum.html">Street Children</a></li>
+      <li><a href="nurture.html">Nurture Merit</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <span class="footer-col-title">Organisation</span>
+    <ul>
+      <li><a href="about.html">About SATHI</a></li>
+      <li><a href="people.html">People of SATHI</a></li>
+      <li><a href="stories.html">Stories of Change</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <span class="footer-col-title">Get In Touch</span>
+    <ul>
+      <li><a href="mailto:sathi.admin@gmail.com">sathi.admin@gmail.com</a></li>
+      <li><a href="tel:+919448388257">+91 94483 88257</a></li>
+      <li><a href="https://sathiindia.org/donate-now.html" target="_blank">Donate Now</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 SATHI India · Registered Non-Profit · FCRA Certified</p>
+    <p>Pune · Bangalore · Delhi · Mumbai</p>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+function filterStories(prog, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.story-full').forEach(card => {
+    if (prog === 'all' || card.dataset.prog.includes(prog)) {
+      card.style.display = 'grid';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
